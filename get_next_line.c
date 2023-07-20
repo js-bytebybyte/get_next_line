@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jolandesteenput <jolandesteenput@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:15 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/19 18:41:03 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:47:24 by jolandestee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jolandesteenput <jolandesteenput@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:48:07 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/19 18:42:34 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:46:40 by jolandestee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_calloc(int count, int size)
 	return (stash);
 }
 
-int	ft_strchr(const char *stash, const char c)
+int	ft_strchr(char *stash, char c)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ int	ft_strchr(const char *stash, const char c)
 	return (0);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	int	i;
 
@@ -55,21 +55,18 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-char	*free_and_join(const char *buffer, char *stash)
+char	*free_and_join(char *buffer, char *stash)
 {
 	char	*temp;
 
-	if (!stash)
-		temp = ft_strjoin(buffer, "");
-	else
-	{
-		temp = ft_strjoin(buffer, stash);
-		free(stash);
-	}
+	temp = ft_strjoin(buffer, stash);
+	if (!temp)
+		return (NULL);
+	free(stash);
 	return (temp);
 }
 
-char	*ft_strjoin(const char *buffer, const char *stash)
+char	*ft_strjoin(char *buffer, char *stash)
 {
 	char	*joined;
 	int		i;
@@ -77,6 +74,8 @@ char	*ft_strjoin(const char *buffer, const char *stash)
 	
 	if (!buffer)
 		return (NULL);
+	if (!stash)
+		stash = ft_calloc(1, 1);
 	joined = ft_calloc(ft_strlen(buffer) + ft_strlen(stash) + 1, sizeof(char));
 	i = 0;
 	while (stash[i] != '\0')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_tests_gnl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jolandesteenput <jolandesteenput@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:32:09 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/19 18:37:46 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:44:01 by jolandestee      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 {
 	int	fd;
 
-	fd = open("numbers_lines.txt", O_RDONLY);
+	fd = open("cat.txt", O_RDONLY);
 	printf("fd = %d\n", fd);
 	printf("The first line - attempt 1: %s\n", get_next_line(fd));
 	printf("fd = %d\n", fd);
