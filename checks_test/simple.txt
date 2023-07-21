@@ -1,4 +1,0 @@
-This txt file has 4 lines to test whether my function can identify them.
------ This shouldn't be too hard ---------
-What happens if I insert numbers?
-123456789 + ft_strjoin the buffer.
