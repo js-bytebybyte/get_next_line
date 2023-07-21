@@ -3,42 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jolandesteenput <jolandesteenput@studen    +#+  +:+       +#+        */
+/*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:48:07 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/20 22:40:58 by jolandestee      ###   ########.fr       */
+/*   Updated: 2023/07/21 16:39:17 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_calloc(int count, int size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*stash;
-	int		i;
-	
-	stash = (char *)malloc(count * size);
-	if (!stash)
+	char		*ptr;
+	size_t		i;
+	size_t		total;
+
+	total = size * count;
+	if (size && count != total / size)
+		return (NULL);
+	ptr = malloc(count * size);
+	if (!ptr)
 		return (NULL);
 	i = 0;
 	while (i < (size * count))
 	{
-		stash[i] = '\0';
+		ptr[i] = '\0';
 		i++;
 	}
-	return (stash);
+	return (ptr);
 }
 
 int	ft_strchr(char *stash, char c)
 {
 	int	i;
 
-	if (stash == NULL)
+	if (!stash)
 		return (0);
 	i = 0;
 	while (stash[i] && (stash[i] != c))
 		i++;
-	// if newline char is found, stop the loop
 	if (stash[i] == c)
 		return (1);
 	return (0);
@@ -55,23 +58,13 @@ size_t	ft_strlen(char *s)
 		i++;
 	return (i);
 }
-char	*free_and_join(char *buffer, char *stash)
-{
-	char	*temp;
-
-	temp = ft_strjoin(buffer, stash);
-	if (!temp)
-		return (NULL);
-	free(stash);
-	return (temp);
-}
 
 char	*ft_strjoin(char *buffer, char *stash)
 {
 	char	*joined;
 	int		i;
 	int		j;
-	
+
 	if (!buffer)
 		return (NULL);
 	if (!stash)
@@ -81,14 +74,15 @@ char	*ft_strjoin(char *buffer, char *stash)
 	while (stash[i] != '\0')
 	{
 		joined[i] = stash[i];
-		i++; 
+		i++;
 	}
 	j = 0;
 	while (buffer[j] != '\0')
 	{
 		joined[i + j] = buffer[j];
-		j++; 
+		j++;
 	}
 	joined[i + j] = '\0';
+	free (stash);
 	return (joined);
 }
