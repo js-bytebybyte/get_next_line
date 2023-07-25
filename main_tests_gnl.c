@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_tests_gnl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jolandesteenput <jolandesteenput@studen    +#+  +:+       +#+        */
+/*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:32:09 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/20 22:42:38 by jolandestee      ###   ########.fr       */
+/*   Updated: 2023/07/25 16:17:35 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -21,8 +21,7 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	fd = open("cat.txt", O_RDONLY);
-	printf("fd = %d\n", fd);
+	fd = open("only_1_nl.txt", O_RDONLY);
 	line = get_next_line(fd);
 	printf("%s", line);
 	while (line)
@@ -30,26 +29,25 @@ int	main(void)
 		line = get_next_line(fd);
 		printf("%s", line);
 	}
-	
-	/*printf("The first line - attempt 1: %s\n", get_next_line(fd));
-	printf("fd = %d\n", fd);
-	printf("The first line - attempt 2: %s\n", get_next_line(fd));
-	printf("fd = %d\n", fd);
-	printf("The first line - attempt 3: %s\n", get_next_line(fd));
-	printf("fd = %d\n", fd);
-	printf("The first line - attempt 4: %s\n", get_next_line(fd));
-	*/
 	return(0);
 }
 
 /* Read an empty file */
 
-/*int main(void)
-{
-  int fd;
+// int	main(void)
+// {
+// 	int	fd;
 
-  fd = open("empty.txt", O_RDONLY);
-  printf("fd = %d\n", fd);
-  printf("The first line at the end of the program: %s\n", get_next_line(fd));
-  return(0);   
-}*/
+// 	fd = open("empty.txt", O_RDONLY);
+// 	printf("fd = %d\n", fd);
+// 	printf("The first line at the end of the program:%s\n", get_next_line(fd));
+// 	return(0);
+// }
+
+/* use non valid fd */
+
+// int	main(void)
+// {
+// 	printf("The first line at the end of the program:%s\n", get_next_line(42));
+// 	return(0);
+// }

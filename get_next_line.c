@@ -6,16 +6,35 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:15 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/21 16:55:31 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:41:55 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_free_join(char	*buffer, char *stash)
+{
+	char	*tmp;
+
+	if (!buffer)
+	{
+		free(stash);
+		return (NULL);
+	}
+	if (!stash)
+	{
+		stash = ft_calloc(1, sizeof(char));
+		if (!stash)
+			return (NULL);
+	}
+	tmp = ft_strjoin(buffer, stash);
+	return (tmp);
+}
 /*
 Deletes the first line (=line ending with \n) from stash
 Copies chars from stash in new_stash without the first line
 */
+
 char	*delete_first_line(char *stash)
 {
 	int		i;
@@ -31,6 +50,11 @@ char	*delete_first_line(char *stash)
 		return (NULL);
 	}
 	new_stash = ft_calloc(ft_strlen(stash) - i + 1, sizeof(char));
+	if (!new_stash)
+	{
+		free (stash);
+		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (stash[i + j] != '\0')
@@ -44,7 +68,7 @@ char	*delete_first_line(char *stash)
 }
 
 /*
-Search and retrieve the first line from the stash
+Search and retrieve the first line from stash
 */
 
 char	*get_first_line(char *stash)
@@ -58,6 +82,8 @@ char	*get_first_line(char *stash)
 	while (stash[i] != '\n' && stash[i] != '\0')
 		i++;
 	first_line = ft_calloc(i + 2, sizeof(char));
+	if (!first_line)
+		return (NULL);
 	i = 0;
 	while (stash[i] != '\n' && stash[i] != '\0')
 	{
@@ -75,7 +101,7 @@ char	*get_first_line(char *stash)
 
 /*
 Read nbytes (= BUFFERSIZE) from the opened file indicated by fd
-into buffer until \n is found or eof
+into buffer until \n or eof
 Copy and append the bytes read from buffer to stash
 */
 
@@ -84,7 +110,9 @@ char	*read_line(int fd, char *stash)
 	int		chars_read;
 	char	*buffer;
 
-	buffer = ft_calloc((BUFFER_SIZE + 1), 1);
+	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buffer)
+		return (NULL);
 	chars_read = 1;
 	while ((ft_strchr(stash, '\n') == 0) && chars_read != 0)
 	{
@@ -97,7 +125,7 @@ char	*read_line(int fd, char *stash)
 			return (NULL);
 		}
 		buffer[chars_read] = '\0';
-		stash = ft_strjoin(buffer, stash);
+		stash = ft_free_join(buffer, stash);
 	}
 	free(buffer);
 	return (stash);

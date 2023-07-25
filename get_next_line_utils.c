@@ -6,7 +6,7 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:48:07 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/21 16:39:17 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:40:28 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	char		*ptr;
 	size_t		i;
-	size_t		total;
 
-	total = size * count;
-	if (size && count != total / size)
-		return (NULL);
 	ptr = malloc(count * size);
 	if (!ptr)
 		return (NULL);
@@ -65,11 +61,12 @@ char	*ft_strjoin(char *buffer, char *stash)
 	int		i;
 	int		j;
 
-	if (!buffer)
-		return (NULL);
-	if (!stash)
-		stash = ft_calloc(1, 1);
 	joined = ft_calloc(ft_strlen(buffer) + ft_strlen(stash) + 1, sizeof(char));
+	if (!joined)
+	{
+		free(stash);
+		return (NULL);
+	}
 	i = 0;
 	while (stash[i] != '\0')
 	{
@@ -83,6 +80,6 @@ char	*ft_strjoin(char *buffer, char *stash)
 		j++;
 	}
 	joined[i + j] = '\0';
-	free (stash);
+	free(stash);
 	return (joined);
 }
