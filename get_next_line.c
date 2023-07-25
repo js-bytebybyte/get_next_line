@@ -6,7 +6,7 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:15 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/25 16:41:55 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:24:45 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ char	*delete_first_line(char *stash)
 		free (stash);
 		return (NULL);
 	}
-	i++;
 	j = 0;
-	while (stash[i + j] != '\0')
-	{
-		new_stash[j] = stash[i + j];
-		j++;
-	}
+	while (stash[++i] != '\0')
+		new_stash[j++] = stash[i];
 	new_stash[j] = '\0';
 	free(stash);
 	return (new_stash);

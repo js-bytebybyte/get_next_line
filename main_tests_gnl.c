@@ -6,7 +6,7 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:32:09 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/25 16:17:35 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:24:32 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	fd = open("only_1_nl.txt", O_RDONLY);
+	fd = open("cat.txt", O_RDONLY);
 	line = get_next_line(fd);
 	printf("%s", line);
 	while (line)
