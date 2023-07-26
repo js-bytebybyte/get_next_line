@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:15 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/26 11:13:42 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:51:31 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 /*
 Deletes the first line (=line ending with \n) from stash
@@ -111,21 +111,21 @@ char	*read_line(int fd, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[OPEN_MAX];
 	char		*new_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX - 1)
 		return (NULL);
-	stash = read_line(fd, stash);
-	if (!stash)
+	stash[fd] = read_line(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	new_line = get_first_line(stash);
+	new_line = get_first_line(stash[fd]);
 	if (!new_line)
 	{
-		free (stash);
-		stash = NULL;
+		free (stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
 	}
-	stash = delete_first_line(stash);
+	stash[fd] = delete_first_line(stash[fd]);
 	return (new_line);
 }
