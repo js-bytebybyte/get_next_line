@@ -6,7 +6,7 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:15 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/26 11:13:42 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:14:26 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*read_line(int fd, char *stash)
 	char	*buffer;
 
 	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!buffer)
+    if (!buffer)
 		return (NULL);
 	chars_read = 1;
 	while ((ft_strchr(stash, '\n') == 0) && chars_read != 0)
