@@ -6,7 +6,7 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 10:50:18 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/25 18:42:23 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:56:12 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # endif
 
 char	*get_next_line(int fd);
+char	*ft_free_join(char	*buffer, char *stash);
 char	*ft_strjoin(char *buffer, char *stash);
 
 void	*ft_calloc(size_t count, size_t size);

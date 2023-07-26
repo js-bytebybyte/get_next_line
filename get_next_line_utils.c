@@ -6,7 +6,7 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:48:07 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/25 16:40:28 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:56:00 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,25 @@ size_t	ft_strlen(char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+char	*ft_free_join(char	*buffer, char *stash)
+{
+	char	*tmp;
+
+	if (!buffer)
+	{
+		free(stash);
+		return (NULL);
+	}
+	if (!stash)
+	{
+		stash = ft_calloc(1, sizeof(char));
+		if (!stash)
+			return (NULL);
+	}
+	tmp = ft_strjoin(buffer, stash);
+	return (tmp);
 }
 
 char	*ft_strjoin(char *buffer, char *stash)

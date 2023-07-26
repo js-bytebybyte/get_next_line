@@ -6,33 +6,15 @@
 /*   By: jsteenpu <jsteenpu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 14:35:15 by jsteenpu          #+#    #+#             */
-/*   Updated: 2023/07/25 18:24:45 by jsteenpu         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:00:28 by jsteenpu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_free_join(char	*buffer, char *stash)
-{
-	char	*tmp;
-
-	if (!buffer)
-	{
-		free(stash);
-		return (NULL);
-	}
-	if (!stash)
-	{
-		stash = ft_calloc(1, sizeof(char));
-		if (!stash)
-			return (NULL);
-	}
-	tmp = ft_strjoin(buffer, stash);
-	return (tmp);
-}
 /*
 Deletes the first line (=line ending with \n) from stash
-Copies chars from stash in new_stash without the first line
+Copies all lines except for the first line from stash in new_stash 
 */
 
 char	*delete_first_line(char *stash)
@@ -49,7 +31,7 @@ char	*delete_first_line(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	new_stash = ft_calloc(ft_strlen(stash) - i + 1, sizeof(char));
+	new_stash = ft_calloc(ft_strlen(stash) - i, sizeof(char));
 	if (!new_stash)
 	{
 		free (stash);
